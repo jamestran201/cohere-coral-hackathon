@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/2329B7/
+
 Summary of the Amazon EC2, Amazon EBS, and Amazon RDS Service Event in the EU West Region
 
 We would like to share more details with our customers about the events that occurred with Amazon Elastic Compute Cloud (“EC2”), Amazon Elastic Block Store (“EBS”), and Amazon Relational Database Service (“RDS”) earlier this week, and what we are doing to prevent these sorts of issues from happening again. The service disruption primarily affected EC2 instances, RDS instances, and a subset of EBS volumes in a single Availability Zone in the EU West Region.

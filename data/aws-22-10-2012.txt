@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/680342/
+
 Summary of the October 22, 2012 AWS Service Event in the US-East Region
 
 We’d like to share more about the service event that occurred on Monday, October 22nd in the US- East Region. We have now completed the analysis of the events that affected AWS customers, and we want to describe what happened, our understanding of how customers were affected, and what we are doing to prevent a similar issue from occurring in the future.

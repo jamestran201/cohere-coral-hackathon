@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/4372T8/
+
 Summary of the AWS Service Event in the Sydney Region
 
 We’d like to share more detail about the AWS service disruption that occurred this past weekend in the AWS Sydney Region.  The service disruption primarily affected EC2 instances and their associated Elastic Block Store (“EBS”) volumes running in a single Availability Zone. 

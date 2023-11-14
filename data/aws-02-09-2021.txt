@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/12721/
+
 Summary of AWS Direct Connect Event in the Tokyo (AP-NORTHEAST-1) Region
 
 We would like to provide additional information about the AWS Direct Connect service disruption that occurred in the Tokyo (AP-NORTHEAST-1) Region on September 2, 2021. Beginning 7:30 AM JST, Direct Connect customers began to experience intermittent connectivity issues and elevated packet loss for their traffic destined towards the Tokyo Region. This was caused by the failure of a subset of network devices on one of the network layers along the network path from Direct Connect edge locations to the Datacenter network in the Tokyo Region, where customers’ Virtual Private Clouds (VPCs) reside. Customers started seeing recovery by 12:30 PM JST and by 1:42 PM JST, connectivity issues were fully resolved. All other forms of network connectivity, including traffic between Availability Zones, internet connectivity to the Region, and AWS Virtual Private Network (VPN) connectivity (which some customers use as a back-up to Direct Connect) were not impacted. Direct Connect traffic to other AWS Regions was also not impacted.

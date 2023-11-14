@@ -1,3 +1,5 @@
+https://azure.status.microsoft/en-us/status/history/
+
 Post Incident Review (PIR) - Networking fiber cut - West Europe
 
 What happened?

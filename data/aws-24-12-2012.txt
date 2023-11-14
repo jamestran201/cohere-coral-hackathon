@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/680587/
+
 Summary of the December 24, 2012 Amazon ELB Service Event in the US-East Region
 
 We would like to share more details with our customers about the event that occurred with the Amazon Elastic Load Balancing Service (“ELB”) earlier this week in the US-East Region. While the service disruption only affected applications using the ELB service (and only a fraction of the ELB load balancers were affected), the impacted load balancers saw significant impact for a prolonged period of time.

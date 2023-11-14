@@ -1,3 +1,5 @@
+https://azure.status.microsoft/en-us/status/history/
+
 Post Incident Review (PIR) – Services impacted by power, BIOS, and Virtual Machine issues – East US
 
 What happened?

@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/5467D2/
+
 Summary of the Amazon DynamoDB Service Disruption and Related Impacts in the US-East Region
 
 Early Sunday morning, September 20, we had a DynamoDB service event in the US-East Region that impacted DynamoDB customers in US-East, as well as some other services in the region. The following are some additional details on the root cause, subsequent impact to other AWS services that depend on DynamoDB, and corrective actions we’re taking.

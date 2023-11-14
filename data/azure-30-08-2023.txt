@@ -1,3 +1,5 @@
+https://azure.status.microsoft/en-us/status/history/
+
 Post Incident Review (PIR) - Services impacted after power/cooling issue - Australia East
 
 What happened?

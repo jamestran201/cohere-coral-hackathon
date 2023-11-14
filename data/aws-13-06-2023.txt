@@ -1,6 +1,7 @@
-Title: Summary of the AWS Lambda Service Event in Northern Virginia (US-EAST-1) Region
-Body (after ---):
----
+https://aws.amazon.com/message/061323/
+
+Summary of the AWS Lambda Service Event in Northern Virginia (US-EAST-1) Region
+
 We wanted to provide you with some additional information about the service disruption that occurred in the Northern Virginia (US-EAST-1) Region on June 13th, 2023.
 Issue Summary
 

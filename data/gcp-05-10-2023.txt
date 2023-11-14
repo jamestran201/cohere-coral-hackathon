@@ -1,3 +1,5 @@
+https://status.cloud.google.com/incidents/U39RSGjaANJXtjHpRkdq
+
 Incident affecting Batch, Virtual Private Cloud (VPC), Google Compute Engine, Google Kubernetes Engine, Google Cloud Dataflow, Google Cloud Networking, Google Cloud SQL, Cloud Filestore, Cloud Data Fusion, Google Cloud Dataproc
 
 Summary

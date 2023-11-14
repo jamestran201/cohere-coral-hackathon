@@ -1,3 +1,5 @@
+https://github.blog/2023-05-16-addressing-githubs-recent-availability-issues/#may-11-git-database-incident
+
 Git database degraded due to loss of read replicas
 
 On May 11, a database cluster serving git data crashed, triggering an automated failover. The failover of the primary was successful, but in this instance read replicas were not attached. The primary cannot handle full read/write load, so an average of 15% of requests for Git data were failed or slow, with peak impact of 26% at the start of the incident. We mitigated this by reattaching the read replicas and the core scenarios recovered. Similar to the May 9 incident, additional work was required to recover pull request push updates, but we were eventually able to achieve full resolution.

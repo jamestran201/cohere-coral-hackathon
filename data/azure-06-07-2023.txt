@@ -1,3 +1,5 @@
+https://azure.status.microsoft/en-us/status/history/
+
 Post Incident Review (PIR) - Azure Monitor - Logs data access issues
 
 What happened? 

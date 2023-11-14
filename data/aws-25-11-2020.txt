@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/11201/
+
 Summary of the Amazon Kinesis Event in the Northern Virginia (US-EAST-1) Region
 
 We wanted to provide you with some additional information about the service disruption that occurred in the Northern Virginia (US-EAST-1) Region on November 25th, 2020.

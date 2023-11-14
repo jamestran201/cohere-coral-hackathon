@@ -1,3 +1,5 @@
+https://github.blog/2023-05-16-addressing-githubs-recent-availability-issues/#may-10-github-app-auth-token-incident
+
 GitHub App authentication token issuance degradation due to load
 
 On May 10, the database cluster serving GitHub App auth tokens saw a 7x increase in write latency for GitHub App permissions (status yellow). The failure rate of these auth token requests was 8-15% for the majority of this incident, but did peak at 76% percent for a short time.

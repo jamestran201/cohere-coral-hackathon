@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/74876/
+
 Summary of the Amazon EC2 DNS Resolution Issues in the Asia Pacific (Seoul) Region (AP-NORTHEAST-2)
 
 We’d like to give you some additional information about the service disruption that occurred in the Seoul (AP-NORTHEAST-2) Region on November 22, 2018. Between 8:19 AM and 9:43 AM KST, EC2 instances experienced DNS resolution issues in the AP-NORTHEAST-2 region. This was caused by a reduction in the number of healthy hosts that were part of the EC2 DNS resolver fleet, which provides a recursive DNS service to EC2 instances. Service was restored when the number of healthy hosts was restored to previous levels. EC2 network connectivity and DNS resolution outside of EC2 instances were not affected by this event.

@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/12721/
+
 Summary of the AWS Service Event in the Northern Virginia (US-EAST-1) Region
 
 We want to provide you with some additional information about the service disruption that occurred in the Northern Virginia (US-EAST-1) Region on December 7th, 2021.

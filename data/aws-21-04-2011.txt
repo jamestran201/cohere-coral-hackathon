@@ -1,3 +1,5 @@
+https://aws.amazon.com/message/65648/
+
 Summary of the Amazon EC2 and Amazon RDS Service Disruption in the US East Region
 
 Now that we have fully restored functionality to all affected services, we would like to share more details with our customers about the events that occurred with the Amazon Elastic Compute Cloud (“EC2”) last week, our efforts to restore the services, and what we are doing to prevent this sort of issue from happening again. We are very aware that many of our customers were significantly impacted by this event, and as with any significant service issue, our intention is to share the details of what happened and how we will improve the service for our customers.
