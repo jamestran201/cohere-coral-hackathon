@@ -1,0 +1,9 @@
+GitHub App authentication token issuance degradation due to load
+
+On May 10, the database cluster serving GitHub App auth tokens saw a 7x increase in write latency for GitHub App permissions (status yellow). The failure rate of these auth token requests was 8-15% for the majority of this incident, but did peak at 76% percent for a short time.
+
+We determined that an API for managing GitHub App permissions had an inefficient implementation. When invoked under specific circumstances, it results in very large writes and a timeout failure. This API was invoked by a new caller that retried on timeouts, triggering the incident. While working to identify root cause, improve the data access pattern, and address the source of the new call pattern, we also took steps to reduce load from both internal and external paths, reducing impact to critical paths like GitHub Actions workflows. After recovery, we re-enabled all suspended sources before statusing green.
+
+While we update the backing data model to avoid this pattern entirely, we are updating the API to check for the shift in installation state and will fail the request if it would trigger these large writes as a temporary measure.
+
+Beyond the problem with the query performance, much of our observability is optimized for identifying high-volume patterns, not low-volume high-cost ones, which made it difficult to identify the specific circumstances that were causing degraded cluster health. Moving forward, we are prioritizing work to apply the experiences of our investigations during this incident to ensure we have quick and clear answers for similar cases in the future.

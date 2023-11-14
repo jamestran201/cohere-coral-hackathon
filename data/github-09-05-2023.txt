@@ -1,0 +1,9 @@
+Git Databases degraded due to configuration change
+
+On May 9, we had an incident that caused 8 of the 10 services on the status portal to be impacted by a major (status red) outage. The majority of downtime lasted just over an hour. During that hour-long period, many services could not read newly-written Git data, causing widespread failures. Following this outage, there was an extended timeline for post-incident recovery of some pull request and push data.
+
+This incident was triggered by a configuration change to the internal service serving Git data. The change was intended to prevent connection saturation, and had been previously introduced successfully elsewhere in the Git backend.
+
+Shortly after the rollout began, the cluster experienced a failover. We reverted the config change and attempted a rollback within a few minutes, but the rollback failed due to an internal infrastructure error.
+
+Once we completed a gradual failover, write operations were restored to the database and broad impact ended. Additional time was needed to get Git data, website-visible contents, and pull requests consistent for pushes received during the outage to achieve a full resolution.

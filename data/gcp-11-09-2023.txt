@@ -1,0 +1,20 @@
+Apigee Integrated Developer Portal is experiencing issues while accessing it from Apigee Edge and Apigee X
+
+Summary
+On Monday, 11 September 2023, Apigee integrated developer portal customers experienced elevated 5xx responses, issues authenticating to API, and issues updating portals when accessing it via Apigee Edge or Apigee X for a duration of 8 hours and 25 minutes.
+
+To our Apigee customers whose business analytics were impacted during this disruption, we sincerely apologize. This is not the level of quality and reliability we strive to offer you, and we are taking immediate steps to improve the platform’s performance and availability.
+
+Root Cause
+The root cause of the issue was an incorrect configuration change made to one of the Apigee load balancers for developer portals. This configuration change caused all the requests that were routed through the affected Apigee load balancer to fail with a default 404 error code.
+
+Remediation and Prevention
+Google engineers were alerted by a support case on Monday, 11 September at 07:00 US/Pacific and immediately started an investigation. They were able to identify a misconfiguration in one of the load balancers, which was caused by a change aimed at improving the load balancer’s performance. Upon identifying the misconfiguration, Google Engineers quickly regenerated the configurations of the affected Apigee load balancer and ensured that both load balancers were properly configured.
+
+We apologize for the length and severity of this incident. We are taking the following steps to prevent a recurrence and improve reliability in the future:
+
+Identify the cause of the inconsistent configurations for the developer portal load balancers
+Improve the change management process for Apigee load balancer changes to prevent similar issues
+Improve monitoring and visibility to ensure the incorrect configurations are identified proactively
+Detailed Description of Impact
+On 11 September from 04:00 to 12:25 US/Pacific, users experienced elevated error rates with errors like "Failed to load users", "Failed to load zone" or "Service Unavailable”, when interacting with the developer portal. Customers also experienced issues authenticating to API portals or updating their portals.

@@ -1,0 +1,5 @@
+Git database degraded due to loss of read replicas
+
+On May 11, a database cluster serving git data crashed, triggering an automated failover. The failover of the primary was successful, but in this instance read replicas were not attached. The primary cannot handle full read/write load, so an average of 15% of requests for Git data were failed or slow, with peak impact of 26% at the start of the incident. We mitigated this by reattaching the read replicas and the core scenarios recovered. Similar to the May 9 incident, additional work was required to recover pull request push updates, but we were eventually able to achieve full resolution.
+
+Beyond the immediate mitigation work, the top workstreams underway are focused on determining and resolving what caused the cluster to crash and why the failure didn’t leave the cluster in a good state. We want to clarify that the team was already working to understand and address a previous cluster crash as part of a repair item from a different recent incident. This failover replica failure is new.

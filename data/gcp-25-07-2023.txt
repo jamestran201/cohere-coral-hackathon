@@ -1,0 +1,27 @@
+Incident affecting Chronicle Security
+
+We apologize for the inconvenience this service disruption/outage may have caused. We would like to provide some information about this incident below. Please note, this information is based on our best knowledge at the time of posting and is subject to change as our investigation continues. If you have experienced impact outside of what is listed below, please reach out to Google Cloud Support using https://cloud.google.com/support (All Times US/Pacific)
+
+Incident Start: 25 July 2023 at 06:30
+
+Incident End: 29 July 2023 at 08:03
+
+Duration: 4 days, 1 hour, 33 minutes
+
+Affected Services and Features:
+
+Chronicle Security
+
+Regions/Zones: Multi-regions: us
+
+Description:
+
+Starting on Tuesday, 25 July at 06:30, Chronicle Security began experiencing a slow down in data processing in the US region. This resulted in stale data for Unified Data Model (UDM) [1] Search and delayed threat detections. Chronicle's data processing returned to normal for new events on Wednesday, 27 July at 13:45, with the last events in the incident window processed by customer rules by Saturday, 29 July at 08:03. From a preliminary analysis, the root cause was a surge in traffic from a single customer that occurred on Saturday 22 July. The traffic surge was exacerbated by a pipeline that did not have sufficient rate limiting and ultimately overloaded our persistence layer.
+
+Google engineers mitigated the issue by temporarily limiting the traffic from the high volume customer, removing inter-dependency from as many pipelines as possible, and by disabling several non-critical pipelines.
+
+Customer Impact:
+
+All features in Chronicle Security were still working but the impacted users could have got stale data while searching for UDM events and may have experienced missed threat detections for recently ingested telemetry.
+
+[1] - https://cloud.google.com/chronicle/docs/event-processing/udm-overview

@@ -1,0 +1,77 @@
+Incident affecting Batch, Virtual Private Cloud (VPC), Google Compute Engine, Google Kubernetes Engine, Google Cloud Dataflow, Google Cloud Networking, Google Cloud SQL, Cloud Filestore, Cloud Data Fusion, Google Cloud Dataproc
+
+Summary
+On 5 October, multiple Google Cloud products experienced networking connectivity issues which impacted new and migrated VMs in the us-central1 region for a duration of 7 hours, 47 minutes. Existing VMs were not directly affected. We sincerely apologize for the impact caused to your business. We have identified the root cause and are taking immediate steps to prevent future failures.
+
+Root Cause
+The root cause of the issues was a management plane behavior change that had been rolling out slowly across Google Cloud. The aim of the change was to provide better decoupling in processing API updates to GCP Instance Groups and Network Endpoint Groups used as load balancer backends, thus providing better reliability and performance.
+
+This change had been rolled out to several regions without incident. However, when it was deployed in us-central1, large workload sizes in the region triggered an unexpected memory increase for the control plane for virtual network routers. The controllers eventually ran out of memory, and although they were automatically restarted, the large workload size meant that they repeated the out-of-memory and restart sequence.
+
+Virtual routers and their controllers are deployed into separate zonal failure domains. However, as the management plane change affected a regional API, this extended the issue to all virtual routers in the region, causing synchronized memory pressure and unavailability of controllers.
+
+This unavailability of controllers prevented the virtual network routers from being updated with fresh state, such as new VMs, new locations of migrated VMs, dynamic routes, and health state of load balancer backends. As the frequency of out-of-memory events increased, delays in updating router state increased until there was no practical progress being made.
+
+Existing VMs that did not migrate and did not change their health state were not affected directly. However, traffic to or from these VMs may have passed through a separate affected device such as a VPN Gateway, internal load balancer, or other VM.
+
+There are separate sets of virtual routers for intra-region and cross-region traffic, each with their own control plane component. The cross-region routers were affected first and for a longer duration than the intra-region routers.
+
+Remediation and Prevention
+Google engineers were alerted to slowness in the virtual network control plane in us-central1 on 04 October at 21:45 US/Pacific and immediately started investigations. Initial investigations revealed that slowness was intermittent. At 02:11 US/Pacific on 05 October alerts were received for failures in the virtual network router controllers due to memory exhaustion. Engineers immediately began an attempt to mitigate by allocating more memory. At 03:08 US/Pacific, our networking telemetry began to indicate cross-region packet loss to or from us-central1.
+
+By 05:27 US/Pacific, the memory allocation change started to reach production. At 07:00 US/Pacific, the telemetry indicated intra-region packet loss primarily to and from us-central1-c, but it then subsided at 08:15 US/Pacific due to the rollout of the increased memory allocation.
+
+At 08:22 US/Pacific, the increased memory usage was correlated with the rollout of the management plane change. At 08:52 US/Pacific, a rollback of the management plane change was started, completing in us-central1 at 09:35 US/Pacific. At this point all out of memory events had stopped.
+
+While impact had been greatly reduced, a small number of routers were not accepting updates and had to be manually restarted. These restarts did not cause any additional packet loss. By 10:55 US/Pacific all packet loss had stopped and the control plane was processing updates normally.
+
+If your service or application was affected, we apologize — this is not the level of quality and reliability we strive to offer you. Google is committed to preventing a repeat of this issue in the future and is completing the following actions:
+
+Proactive alerting of memory risks and unexpected increases.
+Refactoring our deployment configuration to allow engineers to reallocate memory much more quickly.
+Re-evaluating existing and establishing new practices and safety mechanisms for API reconciliation.
+Increasing visibility of management plane changes across teams so that they can be correlated more quickly.
+Adjusting our deployment footprint to reduce the chance of simultaneous regional memory exhaustion due to regional API changes.
+Memory optimizations in the traffic routers and their controllers to prevent unnecessary overhead.
+Detailed Description of Impact
+On 5 October 2023 from 03:08 to 10:55 US/Pacific, multiple Google cloud products experienced networking connectivity issues in us-central1. Newly created and recently migrated VMs experienced extended delays before networking became functional. This impacted higher level workloads that rely on provisioning VMs.
+
+Virtual Private Cloud:
+
+Newly created VMs for some projects in us-central1 experienced extended delays before networking became funcitonal.
+Live migrated VMs for some projects in us-central1 experienced extended loss of connectivity after migrating.
+Health check state of VMs in some projects in us-central1 were not being propagated to load balancers in a timely manner.
+From 3:08 to 10:55, impact was largely limited to cross-regional virtual network traffic. From 7:00 to 8:15, there was a substantial impact on intra-region flows.
+Google Kubernetes Engine:
+
+Up to 0.4 percent of clusters in us-central1 may have experienced downtime and/or delays during the cluster operations such as recreate and upgrade.
+24 percent of cluster creation attempts experienced failure or delay. For the majority, no action was needed with the operations succeeding after a period of up to 120 minutes.
+Note that affected operations may have been triggered automatically by Google, e.g. autoupgrade or node repair, as well as by customers.
+During the downtime, in the Google Cloud Console Clusters page, customers may have seen that some Nodes had not registered and the cluster was unhealthy.
+Cloud Data Fusion:
+
+New Cloud Data Fusion VM creation may have failed in the us-central1 region. This issue impacted existing instance operations in the us-central1 region.
+Around 27 percent of the total Data Fusion requests in us-central1 at the time encountered issues.
+Cloud Filestore:
+
+New Filestore VMs created during upgrades, were unable to communicate with each other. Filestore upgrades may have failed and were rolled back to the previous version.
+Before the incident started, only ~6 percent of instances in us-central1-a had been updated. This issue prevented the update of the rest.
+Update backlogs processed gradually and eventually completed ~1 day later on 06 October.
+Cloud SQL:
+
+New Cloud SQL VM creations failed and Cloud SQL databases were unavailable if changes that resulted in a new VM being created were made to the existing instances. (e.g. Update, Self Service Maintenance, Clone/Failover, etc.)
+Cloud Dataproc:
+
+New cluster creations experienced elevated latencies and failures: up to 5 percent of new cluster creations failed in us-central1
+Existing clusters may have failed to execute jobs.
+Cloud Dataflow:
+
+Existing jobs experienced degradation in acquiring resources in response to demand (horizontal scaling failures).
+New jobs faced start up failure or extended initialization latencies.
+Container downloads from Artifact Registry failed (resulting in failure to instantiate or horizontally scale workloads).
+The issue impacted less than 5 percent of all Dataflow jobs.
+Cloud Datastream:
+
+On 5 October from 08:00 to 10:10 US/Pacific, streams in the us-central1 region experienced delayed ingestion of data due to a high restart rate of the stream’s pods which were in charge of scheduling the ingestion tasks.
+Less than 5 percent of streams in us-central-1 were impacted.
+The impacted streams had a spike in the “Data freshness” and “Total latency” monitoring metrics in this timeframe.
