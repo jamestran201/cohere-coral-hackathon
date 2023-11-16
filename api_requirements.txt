@@ -1,0 +1,2 @@
+fastapi[all]
+weaviate-client==3.*
