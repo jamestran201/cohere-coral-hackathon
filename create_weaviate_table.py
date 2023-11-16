@@ -20,7 +20,10 @@ schema = {
            "moduleConfig": {
                "generative-cohere": { 
                     "model": "command-xlarge-nightly"
-                }
+                },
+                "reranker-cohere": {
+                    "model": "rerank-english-v2.0",
+                },
            },
            "properties": [
                {
