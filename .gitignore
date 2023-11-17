@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 local_env_vars.sh
+connector_info.json
