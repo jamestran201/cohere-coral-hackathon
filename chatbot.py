@@ -1,12 +1,16 @@
 import cohere
 import os
+import secrets
 import streamlit as st
 
 CONNECTOR_ID = os.environ.get("COHERE_CONNECTOR_ID")
 
 co = cohere.Client(os.environ.get("COHERE_API_KEY"))
 
-st.title("💬 Chatbot")
+if "conversation_id" not in st.session_state:
+    st.session_state["conversation_id"] = secrets.token_urlsafe(32)
+
+st.title("Incident Review Chatbot")
 st.caption("🚀 A streamlit chatbot powered by Cohere Coral")
 
 if "messages" not in st.session_state:
@@ -19,7 +23,13 @@ if user_prompt := st.chat_input("What was the root cause for the incident at Atl
     st.session_state.messages.append({"role": "user", "content": user_prompt})
     st.chat_message("user").write(user_prompt)
 
-    response = co.chat(message=user_prompt, temperature=0, connectors=[{"id": CONNECTOR_ID}])
+    response = co.chat(
+        message=user_prompt,
+        temperature=0,
+        connectors=[{"id": CONNECTOR_ID}],
+        conversation_id=st.session_state["conversation_id"]
+    )
+
     with st.chat_message("assistant"):
         annotated_text = response.text
         offset = 0
