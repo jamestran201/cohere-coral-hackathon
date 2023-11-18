@@ -1,4 +1,6 @@
+cohere
 fastapi[all]
 jq
 langchain==0.0.336
+streamlit
 weaviate-client==3.*
